@@ -3,39 +3,34 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>চাঁদপুর জেলা – তথ্য সংগ্রহ</title>
+<title>গীতা প্রতিযোগিতা ২০২৬</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{--ink:#10242b;--mut:#5b6f76;--bg:#eef4f6;--card:#fff;--line:#d5e2e6;--river:#0e7c86;--river-d:#0a5961;--gold:#e9a23b;--err:#b3261e}
 *{box-sizing:border-box}
 body{margin:0;font-family:'Hind Siliguri',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
-header{background:var(--river-d);color:#fff;padding:22px 16px 0}
+header{background:var(--river-d);color:#fff;padding:24px 16px 0;text-align:center}
 .wrap{max-width:900px;margin:0 auto}
-h1{margin:0;font-size:1.6rem;font-weight:700}
-header p{margin:2px 0 14px;opacity:.85}
-nav{display:flex;gap:4px}
+h1{margin:0;font-size:2rem;font-weight:700;color:var(--gold)}
+header p{margin:2px 0 16px;opacity:.9}
+nav{display:flex;gap:4px;justify-content:center}
 nav button{font:inherit;font-weight:600;border:0;padding:10px 20px;border-radius:10px 10px 0 0;background:transparent;color:#cfe7ea;cursor:pointer}
 nav button.on{background:var(--bg);color:var(--river-d)}
 main{max-width:900px;margin:0 auto;padding:20px 16px 48px}
 .panel{display:none}.panel.on{display:block}
 h2{font-size:1.15rem;margin:0 0 12px}
-.upz{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px}
-.upz button{font:inherit;font-weight:600;font-size:1.05rem;padding:16px;border:1.5px solid var(--line);background:var(--card);border-radius:10px;cursor:pointer;text-align:left;color:var(--ink)}
+.upz{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px}
+.upz button{font:inherit;font-weight:600;font-size:1.02rem;padding:14px;border:1.5px solid var(--line);background:var(--card);border-radius:10px;cursor:pointer;text-align:left;color:var(--ink)}
 .upz button:hover,.upz button:focus-visible{border-color:var(--river);outline:none;background:#e3f2f4}
+.crumb{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:14px}
+.crumb b{color:var(--river-d)}
+.link{font:inherit;background:none;border:0;color:var(--river);cursor:pointer;text-decoration:underline;white-space:nowrap}
 .box{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px}
-.chosen{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--line)}
-.chosen b{color:var(--river-d);font-size:1.15rem}
-.link{font:inherit;background:none;border:0;color:var(--river);cursor:pointer;text-decoration:underline}
 label{display:block;font-weight:500;margin:12px 0 4px}
-input,textarea{width:100%;font:inherit;padding:10px 12px;border:1.5px solid var(--line);border-radius:8px;background:#fff;color:var(--ink)}
-input:focus,textarea:focus{outline:2px solid var(--river);border-color:var(--river)}
-.seg{display:flex;gap:10px}
-.seg label{flex:1;margin:0;font-weight:600}
-.seg input{position:absolute;opacity:0;width:0}
-.seg span{display:block;text-align:center;padding:10px;border:1.5px solid var(--line);border-radius:8px;cursor:pointer}
-.seg input:checked+span{background:var(--river);border-color:var(--river);color:#fff}
-.seg input:focus-visible+span{outline:2px solid var(--gold);outline-offset:2px}
+input,select{width:100%;font:inherit;padding:10px 12px;border:1.5px solid var(--line);border-radius:8px;background:#fff;color:var(--ink)}
+input:focus,select:focus{outline:2px solid var(--river);border-color:var(--river)}
+select:disabled{background:#eef2f3;color:var(--mut)}
 .hp{position:absolute;left:-9999px}
 .go{margin-top:18px;width:100%;font:inherit;font-weight:700;font-size:1.05rem;padding:12px;border:0;border-radius:8px;background:var(--river);color:#fff;cursor:pointer}
 .go:disabled{opacity:.6}
@@ -45,49 +40,44 @@ input:focus,textarea:focus{outline:2px solid var(--river);border-color:var(--riv
 .live i{width:9px;height:9px;border-radius:50%;background:#2e9e5b;animation:p 1.6s infinite}
 @keyframes p{50%{opacity:.25}}
 @media(prefers-reduced-motion:reduce){.live i{animation:none}}
+.filters{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+.filters label{margin:0 0 4px}
 .big{background:var(--river-d);color:#fff;border-radius:12px;padding:20px;margin-bottom:12px}
-.big small{opacity:.85;font-size:1rem}
+.big small{opacity:.9;font-size:1rem}
 .big div{font-size:3rem;font-weight:700;line-height:1.15;color:var(--gold)}
 .t5{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px}
 .t5 div{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
 .t5 small{color:var(--mut)}.t5 b{display:block;font-size:1.5rem}
 .tw{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:12px}
-table{width:100%;border-collapse:collapse;min-width:640px}
+table{width:100%;border-collapse:collapse;min-width:560px}
 th,td{padding:10px 12px;text-align:right;border-bottom:1px solid var(--line)}
 th:first-child,td:first-child{text-align:left}
 th{font-weight:600;color:var(--mut);font-size:.9rem;background:#f6fafb}
 tr:last-child td{border-bottom:0}
 .bar{display:block;height:6px;border-radius:3px;background:var(--river);margin-top:4px;min-width:2px}
-@media(max-width:560px){.t5{grid-template-columns:repeat(2,1fr)}h1{font-size:1.3rem}}
+@media(max-width:560px){.t5{grid-template-columns:repeat(2,1fr)}.filters{grid-template-columns:1fr}h1{font-size:1.6rem}}
 </style>
 </head>
 <body>
 <header><div class="wrap">
-  <h1>চাঁদপুর জেলা – তথ্য সংগ্রহ</h1>
-  <p>আপনার উপজেলা বেছে নিয়ে তথ্য জমা দিন</p>
+  <h1>গীতা প্রতিযোগিতা ২০২৬</h1>
+  <p>আয়োজনে ভক্তিবেদান্ত গীতা একাডেমি ও জাগ্রত ছাত্র সমাজ ইসকন চাঁদপুর</p>
   <nav><button id="t1" class="on">তথ্য জমা দিন</button><button id="t2">লাইভ ড্যাশবোর্ড</button></nav>
 </div></header>
 
 <main>
 <section id="p1" class="panel on">
-  <div id="pick">
-    <h2>আপনার উপজেলা কোনটি?</h2>
-    <div class="upz" id="upz"></div>
+  <div id="s1"><h2>আপনার উপজেলা কোনটি?</h2><div class="upz" id="upzList"></div></div>
+  <div id="s2" style="display:none">
+    <div class="crumb"><h2 style="margin:0"><b id="c2"></b> – ইউনিয়ন বেছে নিন</h2><button class="link" id="b2" type="button">উপজেলা পরিবর্তন</button></div>
+    <div class="upz" id="unList"></div>
   </div>
-  <div id="formWrap" style="display:none" class="box">
-    <div class="chosen"><span>উপজেলা: <b id="cur"></b></span><button class="link" id="back" type="button">উপজেলা পরিবর্তন করুন</button></div>
+  <div id="s3" style="display:none" class="box">
+    <div class="crumb"><span><b id="c3"></b></span><button class="link" id="b3" type="button">ইউনিয়ন পরিবর্তন</button></div>
     <form id="f" novalidate autocomplete="off">
       <label for="sn">শিক্ষার্থীর নাম</label><input id="sn" name="student_name" required maxlength="100">
-      <label for="fn">পিতার নাম</label><input id="fn" name="father_name" required maxlength="100">
-      <label for="mn">মাতার নাম</label><input id="mn" name="mother_name" required maxlength="100">
-      <label>বিভাগ</label>
-      <div class="seg">
-        <label><input type="radio" name="category" value="অচ্যুত" required><span>অচ্যুত</span></label>
-        <label><input type="radio" name="category" value="পার্থ"><span>পার্থ</span></label>
-      </div>
-      <label for="ad">ঠিকানা</label><textarea id="ad" name="address" rows="2" required maxlength="300"></textarea>
-      <label for="ins">শিক্ষা প্রতিষ্ঠানের নাম</label><input id="ins" name="institution" required maxlength="200">
       <label for="mb">মোবাইল নম্বর</label><input id="mb" name="mobile" inputmode="numeric" placeholder="01XXXXXXXXX" required maxlength="11">
+      <label for="q">কয়টা করেছে</label><select id="q" name="qty" required></select>
       <input class="hp" name="website" tabindex="-1" aria-hidden="true">
       <button class="go" id="go" type="submit">তথ্য জমা দিন</button>
       <div class="msg" id="msg" role="status"></div>
@@ -97,16 +87,20 @@ tr:last-child td{border-bottom:0}
 
 <section id="p2" class="panel">
   <div class="live"><i></i><span id="upd">লোড হচ্ছে…</span></div>
-  <div class="big"><small>মোট জমা</small><div id="total">০</div></div>
+  <div class="filters">
+    <div><label for="fu">উপজেলা</label><select id="fu"></select></div>
+    <div><label for="fn">ইউনিয়ন</label><select id="fn" disabled></select></div>
+  </div>
+  <div class="big"><small id="scope">সব উপজেলা – মোট</small><div id="total">০</div><small id="ent"></small></div>
   <div class="t5">
     <div><small>গত ১ ঘণ্টা</small><b id="hr">০</b></div>
     <div><small>আজ</small><b id="dy">০</b></div>
     <div><small>গত ৭ দিন</small><b id="wk">০</b></div>
     <div><small>এই মাস</small><b id="mo">০</b></div>
   </div>
-  <h2>উপজেলা অনুযায়ী হিসাব</h2>
+  <h2 id="tt">উপজেলা অনুযায়ী হিসাব</h2>
   <div class="tw"><table>
-    <thead><tr><th>উপজেলা</th><th>ঘণ্টা</th><th>আজ</th><th>সপ্তাহ</th><th>মাস</th><th>অচ্যুত</th><th>পার্থ</th><th>মোট</th></tr></thead>
+    <thead><tr><th id="th1">উপজেলা</th><th>ঘণ্টা</th><th>আজ</th><th>সপ্তাহ</th><th>মাস</th><th>মোট</th></tr></thead>
     <tbody id="rows"></tbody>
   </table></div>
 </section>
@@ -117,12 +111,23 @@ tr:last-child td{border-bottom:0}
 const BASE = 'https://flyfqovookoijeouclzp.supabase.co/rest/v1';
 const KEY  = 'sb_publishable_vWmR5lFCnbgJHU6CkC5g4A_4y9eWJt3';
 // =================================
+// উপজেলা → ইউনিয়ন তালিকা (এখানে নাম বদলানো/যোগ করা যাবে)
+const D = {
+ 'চাঁদপুর সদর':['চাঁদপুর সদর','বিষ্ণুপুর','আশিককাটি','কল্যাণপুর','শাহ্‌মাহমুদপুর','রামপুর','মৈশাদী','তরপুরচন্ডী','বাগাদী','বালিয়া','হানারচর','চান্দ্রা','রাজরাজেশ্বর','ইব্রাহিমপুর','সাখুয়া'],
+ 'মতলব উত্তর':['মতলব উত্তর','ষাটনল','বাগানবাড়ী','সাদুল্লাপুর','বাগানবাড়ি (পুরাতন)','জহিরাবাদ','ফতেপুর পূর্ব','ফতেপুর পশ্চিম','এখলাছপুর','মোহনপুর','ফরাজীকান্দি','ইসলামাবাদ','সুলতানাবাদ','দুর্গাপুর','গজরা'],
+ 'মতলব দক্ষিণ':['মতলব দক্ষিণ','নায়েরগাঁও উত্তর','নায়েরগাঁও দক্ষিণ','খাদেরগাঁও','নারায়ণপুর','উপাদী উত্তর','উপাদী দক্ষিণ'],
+ 'হাজীগঞ্জ':['হাজীগঞ্জ','হাজীগঞ্জ সদর','রাজারগাঁও উত্তর','বাকিলা','কালচোঁ উত্তর','কালচোঁ দক্ষিণ','বড়কূল পূর্ব','বড়কূল পশ্চিম','হাটিলা পূর্ব','গন্ধর্ব্যপুর উত্তর','গন্ধর্ব্যপুর দক্ষিণ','হাটিলা পশ্চিম','দ্বাদশ গ্রাম'],
+ 'শাহরাস্তি':['শাহরাস্তি','মেহের উত্তর','মেহের দক্ষিণ','রায়শ্রী উত্তর','রায়শ্রী দক্ষিণ','সূচীপাড়া উত্তর','সূচীপাড়া দক্ষিণ','চিতোষী পূর্ব','চিতোষী পশ্চিম','সূচীপাড়া কেন্দ্র (নতুন)','টামটা উত্তর','টামটা দক্ষিণ'],
+ 'ফরিদগঞ্জ':['ফরিদগঞ্জ','ফরিদগঞ্জ দক্ষিণ','বালিথুবা পশ্চিম','বালিথুবা পূর্ব','সুবিধাপুর পূর্ব','সুবিধাপুর পশ্চিম','গুপ্টি পূর্ব','গুপ্টি পশ্চিম','পাইকপাড়া উত্তর','পাইকপাড়া দক্ষিণ','গোবিন্দপুর উত্তর','গোবিন্দপুর দক্ষিণ','চরদুঃখিয়া পূর্ব','চরদুঃখিয়া পশ্চিম','রূপসা উত্তর','রূপসা দক্ষিণ'],
+ 'হাইমচর':['হাইমচর','হাইমচর (মেইন সদর)','গাজীপুর','আলগী দুর্গাপুর উত্তর','আলগী দুর্গাপুর দক্ষিণ','নীলকমল','চরভৈরবী'],
+ 'কচুয়া':['কচুয়া','কচুয়া উত্তর','কচুয়া দক্ষিণ','সাচার','পাথৈর','বিতারা','পালগিরি','সহদেবপুর পশ্চিম','কাদলা','কড়ইয়া','গোহাট উত্তর','গোহাট দক্ষিণ','আশ্রাফপুর']
+};
 const H = {apikey: KEY, 'Content-Type': 'application/json'};
-const UP = ['চাঁদপুর সদর','হাইমচর','ফরিদগঞ্জ','মতলব উত্তর','মতলব দক্ষিণ','শাহরাস্তি','কচুয়া','হাজীগঞ্জ'];
 const $ = id => document.getElementById(id);
 const bn = n => Number(n).toLocaleString('bn-BD');
 const en = s => s.replace(/[০-৯]/g, d => '০১২৩৪৫৬৭৮৯'.indexOf(d));
-let cur = '';
+const opts = (arr, first) => (first ? `<option value="">${first}</option>` : '') + arr.map(x => `<option>${x}</option>`).join('');
+let up = '', un = '', DATA = [];
 
 // ট্যাব
 function tab(n){
@@ -131,51 +136,81 @@ function tab(n){
 }
 $('t1').onclick = () => tab(1); $('t2').onclick = () => tab(2);
 
-// উপজেলা বাছাই
-UP.forEach(u => {
-  const b = document.createElement('button'); b.textContent = u;
-  b.onclick = () => { cur = u; $('cur').textContent = u; $('pick').style.display = 'none'; $('formWrap').style.display = 'block'; $('msg').className = 'msg'; $('sn').focus(); };
-  $('upz').appendChild(b);
+// ফর্ম: উপজেলা → ইউনিয়ন → ফর্ম
+function step(n){ [1,2,3].forEach(i => $('s'+i).style.display = i===n ? '' : 'none'); }
+function btns(el, list, fn){
+  el.innerHTML = '';
+  list.forEach(x => { const b = document.createElement('button'); b.textContent = x; b.onclick = () => fn(x); el.appendChild(b); });
+}
+btns($('upzList'), Object.keys(D), u => {
+  up = u; $('c2').textContent = u;
+  btns($('unList'), D[u], n => { un = n; $('c3').textContent = u + ' › ' + n; $('msg').className = 'msg'; step(3); $('sn').focus(); });
+  step(2);
 });
-$('back').onclick = () => { $('formWrap').style.display = 'none'; $('pick').style.display = 'block'; };
+$('b2').onclick = () => step(1);
+$('b3').onclick = () => step(2);
+$('q').innerHTML = opts(Array.from({length:100}, (_, i) => i+1).map(n => n), 'সংখ্যা বেছে নিন').replace(/<option>(\d+)<\/option>/g, (_, n) => `<option value="${n}">${bn(n)}</option>`);
 
-// ফর্ম জমা
 function show(t, bad){ const m = $('msg'); m.textContent = t; m.className = 'msg ' + (bad ? 'bad' : 'ok'); }
 $('f').onsubmit = async e => {
   e.preventDefault();
   const f = e.target;
   if (f.website.value) return; // spam trap
-  const v = n => f[n].value.trim();
-  const mobile = en(v('mobile'));
-  if (!f.category.value) return show('বিভাগ বেছে নিন।', 1);
-  if (['student_name','father_name','mother_name','address','institution'].some(n => v(n).length < 2)) return show('সব ঘর পূরণ করুন।', 1);
+  const name = f.student_name.value.trim(), mobile = en(f.mobile.value.trim());
+  if (name.length < 2) return show('শিক্ষার্থীর নাম লিখুন।', 1);
   if (!/^01[3-9]\d{8}$/.test(mobile)) return show('সঠিক মোবাইল নম্বর দিন (১১ ডিজিট, 01 দিয়ে শুরু)।', 1);
-  const body = {upazila: cur, student_name: v('student_name'), father_name: v('father_name'), mother_name: v('mother_name'),
-    category: f.category.value, address: v('address'), institution: v('institution'), mobile};
+  if (!f.qty.value) return show('কয়টা করেছে তা বেছে নিন।', 1);
   $('go').disabled = true;
   try {
-    const r = await fetch(BASE + '/submissions', {method: 'POST', headers: {...H, Prefer: 'return=minimal'}, body: JSON.stringify(body)});
+    const r = await fetch(BASE + '/gita_entries', {method: 'POST', headers: {...H, Prefer: 'return=minimal'},
+      body: JSON.stringify({upazila: up, union_name: un, student_name: name, mobile, qty: Number(f.qty.value)})});
     if (!r.ok) throw new Error(r.status);
     f.reset(); show('তথ্য জমা হয়েছে। ধন্যবাদ! আরেকজনের তথ্য দিতে চাইলে আবার পূরণ করুন।'); load();
   } catch { show('তথ্য জমা হয়নি। ইন্টারনেট দেখে আবার চেষ্টা করুন।', 1); }
   $('go').disabled = false;
 };
 
-// লাইভ ড্যাশবোর্ড (প্রতি ৫ সেকেন্ডে নতুন হিসাব)
+// ড্যাশবোর্ড
+$('fu').innerHTML = opts(Object.keys(D), 'সব উপজেলা');
+$('fu').onchange = () => {
+  const u = $('fu').value;
+  $('fn').disabled = !u;
+  $('fn').innerHTML = u ? opts(D[u], 'সব ইউনিয়ন') : '';
+  render();
+};
+$('fn').onchange = render;
+
+const Z = () => ({entries:0, total:0, hr:0, dy:0, wk:0, mo:0});
+const add = (a, r) => { for (const k in a) a[k] += Number(r[k]); };
+
+function render(){
+  const fu = $('fu').value, fn = $('fn').value;
+  const rows = DATA.filter(r => (!fu || r.upz === fu) && (!fn || r.un === fn));
+  const s = Z(); rows.forEach(r => add(s, r));
+  $('scope').textContent = (fu || 'সব উপজেলা') + (fn ? ' › ' + fn : '') + ' – মোট';
+  $('total').textContent = bn(s.total);
+  $('ent').textContent = 'ফর্ম জমা: ' + bn(s.entries) + ' বার';
+  ['hr','dy','wk','mo'].forEach(k => $(k).textContent = bn(s[k]));
+  // টেবিল: উপজেলা না বাছলে উপজেলা অনুযায়ী, বাছলে ইউনিয়ন অনুযায়ী
+  const key = fu ? 'un' : 'upz';
+  let names = fu ? D[fu] : Object.keys(D);
+  if (fn) names = [fn];
+  const agg = {}; names.forEach(n => agg[n] = Z());
+  rows.forEach(r => add(agg[r[key]], r));
+  $('th1').textContent = fu ? 'ইউনিয়ন' : 'উপজেলা';
+  $('tt').textContent = fu ? fu + ' – ইউনিয়ন অনুযায়ী হিসাব' : 'উপজেলা অনুযায়ী হিসাব';
+  const max = Math.max(1, ...names.map(n => agg[n].total));
+  $('rows').innerHTML = names.map(n => { const a = agg[n];
+    return `<tr><td>${n}<span class="bar" style="width:${a.total/max*100}%"></span></td><td>${bn(a.hr)}</td><td>${bn(a.dy)}</td><td>${bn(a.wk)}</td><td>${bn(a.mo)}</td><td><b>${bn(a.total)}</b></td></tr>`; }).join('');
+}
+
+// প্রতি ৫ সেকেন্ডে নতুন হিসাব আনে
 async function load(){
   if (document.hidden) return;
   try {
-    const r = await fetch(BASE + '/rpc/get_stats', {method: 'POST', headers: H, body: '{}'});
+    const r = await fetch(BASE + '/rpc/get_gita_stats', {method: 'POST', headers: H, body: '{}'});
     if (!r.ok) throw new Error();
-    const d = await r.json(), map = {};
-    d.forEach(x => map[x.upz] = x);
-    const rows = UP.map(u => map[u] || {upz: u, total:0, hr:0, dy:0, wk:0, mo:0, achyut:0, parth:0});
-    const sum = k => rows.reduce((a, x) => a + Number(x[k]), 0);
-    $('total').textContent = bn(sum('total'));
-    ['hr','dy','wk','mo'].forEach(k => $(k).textContent = bn(sum(k)));
-    const max = Math.max(1, ...rows.map(x => Number(x.total)));
-    $('rows').innerHTML = rows.map(x => `<tr><td>${x.upz}<span class="bar" style="width:${Number(x.total)/max*100}%"></span></td>
-      <td>${bn(x.hr)}</td><td>${bn(x.dy)}</td><td>${bn(x.wk)}</td><td>${bn(x.mo)}</td><td>${bn(x.achyut)}</td><td>${bn(x.parth)}</td><td><b>${bn(x.total)}</b></td></tr>`).join('');
+    DATA = await r.json(); render();
     $('upd').textContent = 'লাইভ • সর্বশেষ হালনাগাদ ' + new Date().toLocaleTimeString('bn-BD');
   } catch { $('upd').textContent = 'ডাটা আনা যাচ্ছে না, আবার চেষ্টা করা হচ্ছে…'; }
 }
