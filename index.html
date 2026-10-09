@@ -1,49 +1,185 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Live Data Dashboard</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f4f7fb;
-      margin: 0;
-      padding: 40px 20px;
-      color: #172033;
-    }
-    main {
-      max-width: 800px;
-      margin: auto;
-    }
-    .card {
-      background: white;
-      padding: 24px;
-      border-radius: 14px;
-      margin-top: 20px;
-      box-shadow: 0 3px 14px #0000000a;
-    }
-    h1 { color: #166534; }
-    .status { color: #15803d; }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>চাঁদপুর জেলা – তথ্য সংগ্রহ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#10242b;--mut:#5b6f76;--bg:#eef4f6;--card:#fff;--line:#d5e2e6;--river:#0e7c86;--river-d:#0a5961;--gold:#e9a23b;--err:#b3261e}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Hind Siliguri',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+header{background:var(--river-d);color:#fff;padding:22px 16px 0}
+.wrap{max-width:900px;margin:0 auto}
+h1{margin:0;font-size:1.6rem;font-weight:700}
+header p{margin:2px 0 14px;opacity:.85}
+nav{display:flex;gap:4px}
+nav button{font:inherit;font-weight:600;border:0;padding:10px 20px;border-radius:10px 10px 0 0;background:transparent;color:#cfe7ea;cursor:pointer}
+nav button.on{background:var(--bg);color:var(--river-d)}
+main{max-width:900px;margin:0 auto;padding:20px 16px 48px}
+.panel{display:none}.panel.on{display:block}
+h2{font-size:1.15rem;margin:0 0 12px}
+.upz{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px}
+.upz button{font:inherit;font-weight:600;font-size:1.05rem;padding:16px;border:1.5px solid var(--line);background:var(--card);border-radius:10px;cursor:pointer;text-align:left;color:var(--ink)}
+.upz button:hover,.upz button:focus-visible{border-color:var(--river);outline:none;background:#e3f2f4}
+.box{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px}
+.chosen{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.chosen b{color:var(--river-d);font-size:1.15rem}
+.link{font:inherit;background:none;border:0;color:var(--river);cursor:pointer;text-decoration:underline}
+label{display:block;font-weight:500;margin:12px 0 4px}
+input,textarea{width:100%;font:inherit;padding:10px 12px;border:1.5px solid var(--line);border-radius:8px;background:#fff;color:var(--ink)}
+input:focus,textarea:focus{outline:2px solid var(--river);border-color:var(--river)}
+.seg{display:flex;gap:10px}
+.seg label{flex:1;margin:0;font-weight:600}
+.seg input{position:absolute;opacity:0;width:0}
+.seg span{display:block;text-align:center;padding:10px;border:1.5px solid var(--line);border-radius:8px;cursor:pointer}
+.seg input:checked+span{background:var(--river);border-color:var(--river);color:#fff}
+.seg input:focus-visible+span{outline:2px solid var(--gold);outline-offset:2px}
+.hp{position:absolute;left:-9999px}
+.go{margin-top:18px;width:100%;font:inherit;font-weight:700;font-size:1.05rem;padding:12px;border:0;border-radius:8px;background:var(--river);color:#fff;cursor:pointer}
+.go:disabled{opacity:.6}
+.msg{margin-top:12px;padding:10px 12px;border-radius:8px;display:none}
+.msg.ok{display:block;background:#e1f4e6;color:#14532d}.msg.bad{display:block;background:#fdeceb;color:var(--err)}
+.live{display:inline-flex;align-items:center;gap:6px;font-size:.9rem;color:var(--mut);margin-bottom:12px}
+.live i{width:9px;height:9px;border-radius:50%;background:#2e9e5b;animation:p 1.6s infinite}
+@keyframes p{50%{opacity:.25}}
+@media(prefers-reduced-motion:reduce){.live i{animation:none}}
+.big{background:var(--river-d);color:#fff;border-radius:12px;padding:20px;margin-bottom:12px}
+.big small{opacity:.85;font-size:1rem}
+.big div{font-size:3rem;font-weight:700;line-height:1.15;color:var(--gold)}
+.t5{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px}
+.t5 div{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.t5 small{color:var(--mut)}.t5 b{display:block;font-size:1.5rem}
+.tw{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:12px}
+table{width:100%;border-collapse:collapse;min-width:640px}
+th,td{padding:10px 12px;text-align:right;border-bottom:1px solid var(--line)}
+th:first-child,td:first-child{text-align:left}
+th{font-weight:600;color:var(--mut);font-size:.9rem;background:#f6fafb}
+tr:last-child td{border-bottom:0}
+.bar{display:block;height:6px;border-radius:3px;background:var(--river);margin-top:4px;min-width:2px}
+@media(max-width:560px){.t5{grid-template-columns:repeat(2,1fr)}h1{font-size:1.3rem}}
+</style>
 </head>
 <body>
-  <main>
-    <h1>Live Data Dashboard</h1>
-    <p>Your data collection website starts here.</p>
+<header><div class="wrap">
+  <h1>চাঁদপুর জেলা – তথ্য সংগ্রহ</h1>
+  <p>আপনার উপজেলা বেছে নিয়ে তথ্য জমা দিন</p>
+  <nav><button id="t1" class="on">তথ্য জমা দিন</button><button id="t2">লাইভ ড্যাশবোর্ড</button></nav>
+</div></header>
 
-    <section class="card">
-      <h2>Dashboard</h2>
-      <p>Total Records: <strong>0</strong></p>
-      <p class="status">Website setup started successfully!</p>
-    </section>
+<main>
+<section id="p1" class="panel on">
+  <div id="pick">
+    <h2>আপনার উপজেলা কোনটি?</h2>
+    <div class="upz" id="upz"></div>
+  </div>
+  <div id="formWrap" style="display:none" class="box">
+    <div class="chosen"><span>উপজেলা: <b id="cur"></b></span><button class="link" id="back" type="button">উপজেলা পরিবর্তন করুন</button></div>
+    <form id="f" novalidate autocomplete="off">
+      <label for="sn">শিক্ষার্থীর নাম</label><input id="sn" name="student_name" required maxlength="100">
+      <label for="fn">পিতার নাম</label><input id="fn" name="father_name" required maxlength="100">
+      <label for="mn">মাতার নাম</label><input id="mn" name="mother_name" required maxlength="100">
+      <label>বিভাগ</label>
+      <div class="seg">
+        <label><input type="radio" name="category" value="অচ্যুত" required><span>অচ্যুত</span></label>
+        <label><input type="radio" name="category" value="পার্থ"><span>পার্থ</span></label>
+      </div>
+      <label for="ad">ঠিকানা</label><textarea id="ad" name="address" rows="2" required maxlength="300"></textarea>
+      <label for="ins">শিক্ষা প্রতিষ্ঠানের নাম</label><input id="ins" name="institution" required maxlength="200">
+      <label for="mb">মোবাইল নম্বর</label><input id="mb" name="mobile" inputmode="numeric" placeholder="01XXXXXXXXX" required maxlength="11">
+      <input class="hp" name="website" tabindex="-1" aria-hidden="true">
+      <button class="go" id="go" type="submit">তথ্য জমা দিন</button>
+      <div class="msg" id="msg" role="status"></div>
+    </form>
+  </div>
+</section>
 
-    <section class="card">
-      <h2>Data Collection</h2>
-      <p>Next, we will add user login, data submission,
-      database storage and real-time reports.</p>
-    </section>
-  </main>
+<section id="p2" class="panel">
+  <div class="live"><i></i><span id="upd">লোড হচ্ছে…</span></div>
+  <div class="big"><small>মোট জমা</small><div id="total">০</div></div>
+  <div class="t5">
+    <div><small>গত ১ ঘণ্টা</small><b id="hr">০</b></div>
+    <div><small>আজ</small><b id="dy">০</b></div>
+    <div><small>গত ৭ দিন</small><b id="wk">০</b></div>
+    <div><small>এই মাস</small><b id="mo">০</b></div>
+  </div>
+  <h2>উপজেলা অনুযায়ী হিসাব</h2>
+  <div class="tw"><table>
+    <thead><tr><th>উপজেলা</th><th>ঘণ্টা</th><th>আজ</th><th>সপ্তাহ</th><th>মাস</th><th>অচ্যুত</th><th>পার্থ</th><th>মোট</th></tr></thead>
+    <tbody id="rows"></tbody>
+  </table></div>
+</section>
+</main>
+
+<script>
+// ===== আপনার Supabase তথ্য =====
+const BASE = 'https://flyfqovookoijeouclzp.supabase.co/rest/v1';
+const KEY  = 'sb_publishable_vWmR5lFCnbgJHU6CkC5g4A_4y9eWJt3';
+// =================================
+const H = {apikey: KEY, 'Content-Type': 'application/json'};
+const UP = ['চাঁদপুর সদর','হাইমচর','ফরিদগঞ্জ','মতলব উত্তর','মতলব দক্ষিণ','শাহরাস্তি','কচুয়া','হাজীগঞ্জ'];
+const $ = id => document.getElementById(id);
+const bn = n => Number(n).toLocaleString('bn-BD');
+const en = s => s.replace(/[০-৯]/g, d => '০১২৩৪৫৬৭৮৯'.indexOf(d));
+let cur = '';
+
+// ট্যাব
+function tab(n){
+  [1,2].forEach(i => { $('p'+i).classList.toggle('on', i===n); $('t'+i).classList.toggle('on', i===n); });
+  if(n===2) load();
+}
+$('t1').onclick = () => tab(1); $('t2').onclick = () => tab(2);
+
+// উপজেলা বাছাই
+UP.forEach(u => {
+  const b = document.createElement('button'); b.textContent = u;
+  b.onclick = () => { cur = u; $('cur').textContent = u; $('pick').style.display = 'none'; $('formWrap').style.display = 'block'; $('msg').className = 'msg'; $('sn').focus(); };
+  $('upz').appendChild(b);
+});
+$('back').onclick = () => { $('formWrap').style.display = 'none'; $('pick').style.display = 'block'; };
+
+// ফর্ম জমা
+function show(t, bad){ const m = $('msg'); m.textContent = t; m.className = 'msg ' + (bad ? 'bad' : 'ok'); }
+$('f').onsubmit = async e => {
+  e.preventDefault();
+  const f = e.target;
+  if (f.website.value) return; // spam trap
+  const v = n => f[n].value.trim();
+  const mobile = en(v('mobile'));
+  if (!f.category.value) return show('বিভাগ বেছে নিন।', 1);
+  if (['student_name','father_name','mother_name','address','institution'].some(n => v(n).length < 2)) return show('সব ঘর পূরণ করুন।', 1);
+  if (!/^01[3-9]\d{8}$/.test(mobile)) return show('সঠিক মোবাইল নম্বর দিন (১১ ডিজিট, 01 দিয়ে শুরু)।', 1);
+  const body = {upazila: cur, student_name: v('student_name'), father_name: v('father_name'), mother_name: v('mother_name'),
+    category: f.category.value, address: v('address'), institution: v('institution'), mobile};
+  $('go').disabled = true;
+  try {
+    const r = await fetch(BASE + '/submissions', {method: 'POST', headers: {...H, Prefer: 'return=minimal'}, body: JSON.stringify(body)});
+    if (!r.ok) throw new Error(r.status);
+    f.reset(); show('তথ্য জমা হয়েছে। ধন্যবাদ! আরেকজনের তথ্য দিতে চাইলে আবার পূরণ করুন।'); load();
+  } catch { show('তথ্য জমা হয়নি। ইন্টারনেট দেখে আবার চেষ্টা করুন।', 1); }
+  $('go').disabled = false;
+};
+
+// লাইভ ড্যাশবোর্ড (প্রতি ৫ সেকেন্ডে নতুন হিসাব)
+async function load(){
+  if (document.hidden) return;
+  try {
+    const r = await fetch(BASE + '/rpc/get_stats', {method: 'POST', headers: H, body: '{}'});
+    if (!r.ok) throw new Error();
+    const d = await r.json(), map = {};
+    d.forEach(x => map[x.upz] = x);
+    const rows = UP.map(u => map[u] || {upz: u, total:0, hr:0, dy:0, wk:0, mo:0, achyut:0, parth:0});
+    const sum = k => rows.reduce((a, x) => a + Number(x[k]), 0);
+    $('total').textContent = bn(sum('total'));
+    ['hr','dy','wk','mo'].forEach(k => $(k).textContent = bn(sum(k)));
+    const max = Math.max(1, ...rows.map(x => Number(x.total)));
+    $('rows').innerHTML = rows.map(x => `<tr><td>${x.upz}<span class="bar" style="width:${Number(x.total)/max*100}%"></span></td>
+      <td>${bn(x.hr)}</td><td>${bn(x.dy)}</td><td>${bn(x.wk)}</td><td>${bn(x.mo)}</td><td>${bn(x.achyut)}</td><td>${bn(x.parth)}</td><td><b>${bn(x.total)}</b></td></tr>`).join('');
+    $('upd').textContent = 'লাইভ • সর্বশেষ হালনাগাদ ' + new Date().toLocaleTimeString('bn-BD');
+  } catch { $('upd').textContent = 'ডাটা আনা যাচ্ছে না, আবার চেষ্টা করা হচ্ছে…'; }
+}
+setInterval(load, 5000); load();
+</script>
 </body>
 </html>
